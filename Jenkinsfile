@@ -1,8 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('build project') {
-          mvn clean install
-        }               
+        stage('checkout code') {
+            steps {
+                checkout scm
+            }        }               
     }
 }
