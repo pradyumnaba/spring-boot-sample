@@ -1,32 +1,15 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'maven:3-alpine' 
+            args '-v /root/.m2:/root/.m2' 
+        }
+    }
     stages {
-       
-        stage('Build') {
+        stage('Build') { 
             steps {
-                echo 'Building..'
+                sh 'mvn -B -DskipTests clean package' 
             }
         }
-        stage('Code Coverage') {
-            steps {
-                echo 'Code Coverage..'
-            }
-        }
-        stage('Unit Test') {
-            steps {
-                echo 'Unit Test..'
-            }
-        }
-        stage('Integration Test') {
-            steps {
-                echo 'Integration Testing..'
-            }
-        }
-        stage('Static Code Analysis') {
-            steps {
-                echo 'SCA..'
-            }
-        }        
     }
 }
