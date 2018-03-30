@@ -12,15 +12,25 @@ pipeline {
                 echo 'Building..'
             }
         }
-        stage('Test') {
+        stage('Code Coverage') {
             steps {
-                echo 'Testing..'
+                echo 'Code Coverage..'
             }
         }
-        stage('Deploy') {
+        stage('Unit Test') {
             steps {
-                echo 'Deploying....'
+                echo 'Unit Test..'
             }
         }
+        stage('Integration Test') {
+            steps {
+                echo 'Integration Testing..'
+            }
+        }
+        stage('Static Code Analysis') {
+            steps {
+                echo 'SCA..'
+            }
+        }        
     }
 }
