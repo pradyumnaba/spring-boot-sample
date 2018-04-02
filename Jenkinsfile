@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
+                git poll: true
                 sh 'mvn -DskipTests clean package' 
             }
         }
