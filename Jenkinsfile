@@ -21,14 +21,14 @@ pipeline {
                 docker.image('mysql:latest').inside("--link ${c.id}:db") {
                 sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
                 }
-            }
 
-            docker.image('maven:3-alpine').withRun('-v /root/.m2:/root/.m2') { m ->
+                docker.image('maven:3-alpine').withRun('-v /root/.m2:/root/.m2') { m ->
                 docker.image('maven:3-alpine').inside("--link ${c.id}:db") {
                     sh 'mvn test'
                 }
 
-            }
+                }
+            }            
         }        
         
         stage('Static Code Analysis') { 
