@@ -8,7 +8,22 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                sh 'mvn -DskipTests clean package' 
+            }
+        }
+        stage('Code Coverage') { 
+            steps {
+                sh 'mvn cobertura:cobertura' 
+            }
+        }
+        stage('Test') { 
+            steps {
+                sh 'mvn clean test' 
+            }
+        }
+        stage('Static Code Analysis') { 
+            steps {
+                sh 'mvn clean test' 
             }
         }
     }
