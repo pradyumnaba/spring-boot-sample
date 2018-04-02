@@ -17,7 +17,7 @@ pipeline {
             }
         }
         stage('Setup DB and Test') { 
-            docker.image('mysql:latest').withRun('-e "MYSQL_ROOT_PASSWORD=password" -e "MYSQL_DATABASE=hercules"') { c ->
+            docker.image('mysql:latest').withRun('-e "MYSQL_ROOT_PASSWORD=root" -e "MYSQL_DATABASE=springbootsample"') { c ->
             docker.image('mysql:latest').inside("--link ${c.id}:db") {
                 /* Wait until mysql service is up */
                 sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
